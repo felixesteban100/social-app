@@ -13,8 +13,8 @@ function updateTextAreaSize(textArea?: HTMLTextAreaElement) {
 }
 
 function NewTweetForm() {
-    // const session = useSession()
-    // if (session.status !== "authenticated") return null
+    const session = useSession()
+    if (session.status !== "authenticated") return null
     return <Form />
 }
 
@@ -28,13 +28,13 @@ function Form() {
         textAreaRef.current = textArea
     }, [])
 
-    if(session.status !== "authenticated") return null
-
-    const trpcUtils = api.useContext()
-
     useLayoutEffect(() => {
         updateTextAreaSize(textAreaRef.current)
     }, [inputValue])
+
+    if(session.status !== "authenticated") return null
+
+    const trpcUtils = api.useContext()
 
     const createTweet = api.tweet.create.useMutation({
         onSuccess: newTweet => {
@@ -70,7 +70,7 @@ function Form() {
         }
     })
 
-    if (session.status !== "authenticated") return null;
+    if(session.status !== "authenticated") return null;
 
     function handleSubmit(e: FormEvent) {
         e.preventDefault()
