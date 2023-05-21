@@ -1,7 +1,8 @@
 import { useSession } from "next-auth/react"
 import Button from "./Button"
 import ProfileImage from "./ProfileImage"
-import { FormEvent, useCallback, useLayoutEffect, useRef, useState } from "react"
+import type { FormEvent } from "react"
+import { useCallback, useLayoutEffect, useRef, useState } from "react"
 import { api } from "~/utils/api"
 
 function updateTextAreaSize(textArea?: HTMLTextAreaElement) {
@@ -90,7 +91,7 @@ function Form() {
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     style={{ height: 0 }}
-                    className="flex-grow resize-none overflow-hidden p-4 text-lg outline-none"
+                    className="flex-grow resize-none overflow-hidden p-4 text-lg outline-none bg-base-100"
                     placeholder="What's happening?"
                 >
 

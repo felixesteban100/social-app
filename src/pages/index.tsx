@@ -12,8 +12,8 @@ const Home: NextPage = () => {
   const session = useSession()
 
   return (
-    <>
-      <header className="sticky top-0 z-10 border-b bg-white pt-2">
+    <div>
+      <header className="sticky top-0 z-10 border-b bg-base-100 pt-2">
         <h1 className="mb-2 px-4 text-lg font-bold">Home</h1>
         {session.status === "authenticated"
           ? (
@@ -22,14 +22,13 @@ const Home: NextPage = () => {
                 return (
                   <button
                     key={tab}
-                    className={`flex-grow p-2 hover:bg-gray-200 focus-visible-bg-gray-200 ${tab === selectedTab ? "border-b-4 border-b-blue-500 font-bold" : ""}`}
+                    className={`flex-grow p-2 hover:bg-primary focus-visible-bg-primary ${tab === selectedTab ? "border-b-4 border-b-primary font-bold" : ""}`}
                     onClick={() => setSelectedTab(tab)}
                   >
                     {tab}
                   </button>
                 )
               })}
-
             </div>
           )
           : null
@@ -42,7 +41,8 @@ const Home: NextPage = () => {
         ? <RecentTweets />
         : <FollowingTweets />
       }
-    </>
+      <div className='flex justify-center text-5xl py-2'>·</div>
+    </div>
   );
 };
 

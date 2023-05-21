@@ -37,7 +37,7 @@ function InfiniteTweetList({
 
     if (tweets == null || tweets.length === 0) {
         return (
-            <h1 className="my-4 text-center text-2xl text-gray-500">
+            <h1 className="my-4 text-center text-2xl text-current">
                 No Tweets
             </h1>
         )
@@ -52,7 +52,7 @@ function InfiniteTweetList({
                 loader={<LoadingSpinner />}
             >
                 {tweets.map((tweet) => {
-                    console.log("tweet", tweet)
+                    // console.log("tweet", tweet)
                     return (
                         <TweetCard key={tweet.id} {...tweet} />
                     )
@@ -119,8 +119,8 @@ function TweetCard({ id, user, content, createdAt, likeCount, likedByMe }: Tweet
                     >
                         {user.name}
                     </Link>
-                    <span className="text-gray-500">-</span>
-                    <span className="text-gray-500">{dateTimeFormatter.format(createdAt)}</span>
+                    <span className="text-current">-</span>
+                    <span className="text-current">{dateTimeFormatter.format(createdAt)}</span>
                 </div>
                 <p className="whitespace-pre-wrap">{content}</p>
                 <HeartButton
@@ -146,11 +146,11 @@ function HeartButton({ onClick, isLoading, likedByMe, likeCount }: HeartButtonPr
     const HeartIcon = likedByMe === true ? VscHeartFilled : VscHeart
 
 
-    console.log("likedByMe", likedByMe)
+    // console.log("likedByMe", likedByMe)
 
     if (session.status !== "authenticated") {
         return (
-            <div className="mb-1 mt-1 flex items-center gap-3 self-start text-gray-500">
+            <div className="mb-1 mt-1 flex items-center gap-3 self-start text-current">
                 <HeartIcon />
                 <span>{likeCount}</span>
             </div>
@@ -163,8 +163,8 @@ function HeartButton({ onClick, isLoading, likedByMe, likeCount }: HeartButtonPr
             onClick={onClick}
             className={`group -ml-2 flex items-center gap-1 self-start transition-colors duration-200 
                 ${likedByMe
-                    ? "text-red-500"
-                    : "text-gray-500 hover:text-red-500 focus-visible:text-red-500"
+                    ? "text-error"
+                    : "text-current hover:text-error focus-visible:text-error"
                 }
             `}
         >
@@ -173,8 +173,8 @@ function HeartButton({ onClick, isLoading, likedByMe, likeCount }: HeartButtonPr
                     className={`
                         transition-colors duration-200 
                         ${likedByMe
-                            ? "fill-red-500"
-                            : "fill-gray-500 group-hover:fill-red-500 group-focus-visible:fill-red-500"}
+                            ? "fill-error"
+                            : "fill-gray-500 group-hover:fill-error group-focus-visible:fill-error"}
                     `}
                 />
             </IconHoverEffect>

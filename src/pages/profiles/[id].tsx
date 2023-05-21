@@ -1,5 +1,5 @@
 import type { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType, NextPage } from "next";
-import { redirect } from "next/dist/server/api-utils";
+// import { redirect } from "next/dist/server/api-utils";
 import Head from "next/head";
 import { ssgHelper } from "~/server/api/ssgHelper";
 import { api } from "~/utils/api";
@@ -49,7 +49,7 @@ const ProfilePage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
             <Head>
                 <title>{`Twitter Clone - ${profile.name}`}</title>
             </Head>
-            <header className="sticky top-0 z-10 flex items-center border-b bg-white px-4 py-2">
+            <header className="sticky top-0 z-10 flex items-center border-b bg-base-100 px-4 py-2">
                 <Link
                     href=".."
                     className="mr-2"
@@ -64,7 +64,7 @@ const ProfilePage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                 />
                 <div className="ml-2 flex-grow">
                     <h1 className="text-lg font-bold">{profile.name}</h1>
-                    <div className="text-gray-500">
+                    <div className="text-current">
                         {profile.tweetsCount}{" "}
                         {getPlural(profile.tweetsCount, "Tweet", "Tweets")} - {" "}
                         {profile.followersCount}{" "}
