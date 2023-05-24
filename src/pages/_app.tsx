@@ -38,7 +38,10 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <meta name="description" content="This is a Twitter clone" />
       </Head>
       {/* <div data-theme="mytheme2" className={`container mx-auto flex items-start sm:pr-4 bg-base-100`}> */}
-      <div data-theme={isDarkMode === true ? "mytheme2" : "mytheme"} className={` flex justify-center bg-base-100 `}>
+      <div 
+        data-theme={isDarkMode === true ? "mytheme2" : "mytheme"} 
+        className={`container mx-auto flex justify-center bg-base-100 max-w-[1000px] `}
+      >
         <SideNav 
           toogleTheme={toogleTheme}
         />

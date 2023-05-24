@@ -96,7 +96,7 @@ function Form() {
 
                 </textarea>
             </div>
-            <Button className="self-end">Tweet</Button>
+            <Button className="text-base-100 self-end">Tweet</Button>
         </form>
     )
 }
