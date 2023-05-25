@@ -1,7 +1,8 @@
 import { type AppType } from "next/app";
 import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
-import { useState } from "react"
+// import { useState } from "react"
+import useLocalStorage from "~/customHooks/useLocalStorage";
 
 import { api } from "~/utils/api";
 
@@ -23,9 +24,9 @@ const MyApp: AppType<{ session: Session | null }> = ({
   Component,
   pageProps: { session, ...pageProps },
 }) => {
-  const [isDarkMode, setIsDarkMode] = useState(false)
+  const [isDarkMode, setIsDarkMode] = useLocalStorage<boolean>("SOCIAL_THEME", false)
 
-  function toogleTheme(){
+  function toogleTheme() {
     setIsDarkMode((prev: boolean) => !prev)
   }
 
@@ -38,15 +39,21 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <meta name="description" content="This is a Twitter clone" />
       </Head>
       {/* <div data-theme="mytheme2" className={`container mx-auto flex items-start sm:pr-4 bg-base-100`}> */}
-      <div 
-        data-theme={isDarkMode === true ? "mytheme2" : "mytheme"} 
-        className={`container mx-auto flex justify-center bg-base-100 max-w-[1000px] `}
+      <div
+
+        data-theme={isDarkMode === true ? "mytheme2" : "mytheme"}
+        className={`px-auto  bg-base-100`}
       >
-        <SideNav 
-          toogleTheme={toogleTheme}
-        />
-        <div className="min-h-screen flex-grow border-x">
-          <Component {...pageProps} />
+        <div className="container flex justify-center mx-auto max-w-[1000px]">
+          <SideNav
+            toogleTheme={toogleTheme}
+            isDarkMode={isDarkMode}
+          />
+          <div
+            className="min-h-screen flex-grow border-x"
+          >
+            <Component {...pageProps} />
+          </div>
         </div>
       </div>
     </SessionProvider>
