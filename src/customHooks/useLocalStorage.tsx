@@ -40,7 +40,7 @@ function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
       ? JSON.parse(storedValue)
       : typeof initialValue === "function"
         ? (initialValue as () => T)()
-        : initialValue
+        : initialValue as T
   });
 
   useEffect(() => {
