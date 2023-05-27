@@ -34,12 +34,12 @@ import { useState, useEffect } from 'react';
 type SetValue<T> = (value: T | ((prevValue: T) => T)) => void;
 
 function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
-  const [value, setValue] = useState<T>(() => {
+  const [value, setValue] = useState<T>((): T => {
     const storedValue = typeof window !== 'undefined' ? localStorage.getItem(key) : null;
     return storedValue !== null
       ? JSON.parse(storedValue)
-      /* : typeof initialValue === "function"
-        ? (initialValue as () => T)() */
+      // : typeof initialValue === "function"
+      //   ? (initialValue as () => T)()
         : initialValue 
   });
 
