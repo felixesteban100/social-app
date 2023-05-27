@@ -33,10 +33,14 @@ import { useState, useEffect } from 'react';
 
 type SetValue<T> = (value: T | ((prevValue: T) => T)) => void;
 
-function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>]{
+function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
   const [value, setValue] = useState<T>(() => {
     const storedValue = typeof window !== 'undefined' ? localStorage.getItem(key) : null;
-    return storedValue !== null ? JSON.parse(storedValue) : initialValue;
+    return storedValue !== null
+      ? JSON.parse(storedValue)
+      : typeof initialValue === "function"
+        ? (initialValue as () => T)()
+        : initialValue
   });
 
   useEffect(() => {
@@ -45,7 +49,7 @@ function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>]{
     }
   }, [key, value]);
 
-  return [value, setValue];
-};
+  return [value, setValue] as [T, typeof setValue];
+}
 
 export default useLocalStorage;
