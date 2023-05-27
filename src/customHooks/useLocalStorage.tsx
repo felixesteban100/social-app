@@ -28,13 +28,13 @@ function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>]{
 
 export default useLocalStorage;
  */
-
+/* 
 import { useState, useEffect } from 'react';
 
 type SetValue<T> = (value: T | ((prevValue: T) => T)) => void;
 
 function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
-  const [value, setValue] = useState<T>((): T => {
+  const [value, setValue] = useState<T>(() => {
     const storedValue = typeof window !== 'undefined' ? localStorage.getItem(key) : null;
     return storedValue !== null
       ? JSON.parse(storedValue)
@@ -52,4 +52,4 @@ function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
   return [value, setValue] as [T, typeof setValue];
 }
 
-export default useLocalStorage;
+export default useLocalStorage; */

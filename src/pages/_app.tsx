@@ -2,7 +2,8 @@ import { type AppType } from "next/app";
 import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 // import { useState } from "react"
-import useLocalStorage from "~/customHooks/useLocalStorage";
+// import useLocalStorage from "~/customHooks/useLocalStorage";
+import { useLocalStorage } from "usehooks-ts";
 
 import { api } from "~/utils/api";
 
