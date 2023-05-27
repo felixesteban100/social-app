@@ -38,10 +38,9 @@ function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
     const storedValue = typeof window !== 'undefined' ? localStorage.getItem(key) : null;
     return storedValue !== null
       ? JSON.parse(storedValue)
-      : typeof initialValue === "function"
-        ? (initialValue as () => T)()
-        // : initialValue 
-        : initialValue as boolean
+      /* : typeof initialValue === "function"
+        ? (initialValue as () => T)() */
+        : initialValue 
   });
 
   useEffect(() => {
